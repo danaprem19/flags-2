@@ -1,6 +1,9 @@
 ---
 title: "Flags of the World: Similarity Explorer"
-format: html
+format:
+  html:
+    resources:
+      - data/*.png
 execute:
   echo: false
 ---

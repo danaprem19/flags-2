@@ -110,16 +110,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="50" data-source-offset="-30"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 49;"><span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>viewof selectedCountry <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  flagData<span class="op">.</span><span class="at">country</span><span class="op">,</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">label</span><span class="op">:</span> <span class="st">"Choose a Country:"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"United States"</span> }</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co">// Mode selection: Most similar vs Least similar</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>viewof comparisonMode <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Most similar"</span><span class="op">,</span> <span class="st">"Least similar"</span>]<span class="op">,</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">label</span><span class="op">:</span> <span class="st">"Show flags that look:"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Most similar"</span> }</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="53" data-source-offset="-30"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 52;"><span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>viewof selectedCountry <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  flagData<span class="op">.</span><span class="at">country</span><span class="op">,</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">label</span><span class="op">:</span> <span class="st">"Choose a Country:"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"United States"</span> }</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co">// Mode selection: Most similar vs Least similar</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>viewof comparisonMode <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Most similar"</span><span class="op">,</span> <span class="st">"Least similar"</span>]<span class="op">,</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">label</span><span class="op">:</span> <span class="st">"Show flags that look:"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Most similar"</span> }</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -136,64 +136,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="64" data-source-offset="-34"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 63;"><span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>selectedIndex <span class="op">=</span> flagData<span class="op">.</span><span class="at">country</span><span class="op">.</span><span class="fu">indexOf</span>(selectedCountry)</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>selectedPath <span class="op">=</span> flagData<span class="op">.</span><span class="at">path</span>[selectedIndex]</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="co">// Compute comparison flags</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>comparisonFlags <span class="op">=</span> {</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> scores <span class="op">=</span> flagData<span class="op">.</span><span class="at">country</span><span class="op">.</span><span class="fu">map</span>((country<span class="op">,</span> i) <span class="kw">=&gt;</span> ({</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="dt">index</span><span class="op">:</span> i<span class="op">,</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="dt">country</span><span class="op">:</span> country<span class="op">,</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="dt">code</span><span class="op">:</span> flagData<span class="op">.</span><span class="at">code</span>[i]<span class="op">,</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> flagData<span class="op">.</span><span class="at">path</span>[i]<span class="op">,</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="dt">score</span><span class="op">:</span> simMatrix[selectedIndex][i]</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">index</span> <span class="op">!==</span> selectedIndex)<span class="op">;</span></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (comparisonMode <span class="op">===</span> <span class="st">"Most similar"</span>) {</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    scores<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> b<span class="op">.</span><span class="at">score</span> <span class="op">-</span> a<span class="op">.</span><span class="at">score</span>)<span class="op">;</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    scores<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">score</span> <span class="op">-</span> b<span class="op">.</span><span class="at">score</span>)<span class="op">;</span></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> scores<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">3</span>)<span class="op">;</span></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="67" data-source-offset="-34"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 66;"><span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>selectedIndex <span class="op">=</span> flagData<span class="op">.</span><span class="at">country</span><span class="op">.</span><span class="fu">indexOf</span>(selectedCountry)</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>selectedPath <span class="op">=</span> flagData<span class="op">.</span><span class="at">path</span>[selectedIndex]</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="co">// Compute comparison flags</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>comparisonFlags <span class="op">=</span> {</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> scores <span class="op">=</span> flagData<span class="op">.</span><span class="at">country</span><span class="op">.</span><span class="fu">map</span>((country<span class="op">,</span> i) <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="dt">index</span><span class="op">:</span> i<span class="op">,</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="dt">country</span><span class="op">:</span> country<span class="op">,</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="dt">code</span><span class="op">:</span> flagData<span class="op">.</span><span class="at">code</span>[i]<span class="op">,</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> flagData<span class="op">.</span><span class="at">path</span>[i]<span class="op">,</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="dt">score</span><span class="op">:</span> simMatrix[selectedIndex][i]</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">index</span> <span class="op">!==</span> selectedIndex)<span class="op">;</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (comparisonMode <span class="op">===</span> <span class="st">"Most similar"</span>) {</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    scores<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> b<span class="op">.</span><span class="at">score</span> <span class="op">-</span> a<span class="op">.</span><span class="at">score</span>)<span class="op">;</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    scores<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">score</span> <span class="op">-</span> b<span class="op">.</span><span class="at">score</span>)<span class="op">;</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="co">// Render the selected flag and the top 3 comparisons</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="font-family: sans-serif; margin-top: 24px;"&gt;</span></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div style="margin-bottom: 30px;"&gt;</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;h3 style="margin-bottom: 8px;"&gt;Selected Flag: </span><span class="sc">${</span>selectedCountry<span class="sc">}</span><span class="vs">&lt;/h3&gt;</span></span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;img </span></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="vs">      src="</span><span class="sc">${</span>selectedPath<span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="vs">      alt="Flag of </span><span class="sc">${</span>selectedCountry<span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="vs">      style="max-width: 420px; width: 100%; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" </span></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="vs">    /&gt;</span></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div&gt;</span></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;h3 style="margin-bottom: 12px;"&gt;</span></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>comparisonMode <span class="op">===</span> <span class="st">"Most similar"</span> <span class="op">?</span> <span class="st">"Three Most Similar Flags"</span> <span class="op">:</span> <span class="st">"Three Least Similar Flags"</span><span class="sc">}</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/h3&gt;</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="display: flex; gap: 20px; flex-wrap: wrap;"&gt;</span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>comparisonFlags<span class="op">.</span><span class="fu">map</span>(f <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 14px; background: #ffffff; width: 230px; box-shadow: 0 2px 4px rgba(0,0,0,0.06);"&gt;</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;div style="font-weight: 600; font-size: 15px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="</span><span class="sc">${</span>f<span class="op">.</span><span class="at">country</span><span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="vs">            </span><span class="sc">${</span>f<span class="op">.</span><span class="at">country</span><span class="sc">}</span></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;/div&gt;</span></span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;img </span></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a><span class="vs">            src="</span><span class="sc">${</span>f<span class="op">.</span><span class="at">path</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="vs">            alt="Flag of </span><span class="sc">${</span>f<span class="op">.</span><span class="at">country</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="vs">            style="width: 100%; height: 140px; object-fit: cover; border: 1px solid #ddd; border-radius: 4px;" </span></span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="vs">          /&gt;</span></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;div style="margin-top: 8px; font-size: 13px; color: #555;"&gt;</span></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="vs">            Similarity: </span><span class="sc">${</span>(f<span class="op">.</span><span class="at">score</span> <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%</span></span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;/div&gt;</span></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="vs">      `</span>)<span class="sc">}</span></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;</span></span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> scores<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="co">// Render the selected flag and the top 3 comparisons</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="font-family: sans-serif; margin-top: 24px;"&gt;</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div style="margin-bottom: 30px;"&gt;</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;h3 style="margin-bottom: 8px;"&gt;Selected Flag: </span><span class="sc">${</span>selectedCountry<span class="sc">}</span><span class="vs">&lt;/h3&gt;</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;img </span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="vs">      src="</span><span class="sc">${</span>selectedPath<span class="sc">}</span><span class="vs">" </span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="vs">      alt="Flag of </span><span class="sc">${</span>selectedCountry<span class="sc">}</span><span class="vs">" </span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="vs">      style="max-width: 420px; width: 100%; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" </span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="vs">    /&gt;</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div&gt;</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;h3 style="margin-bottom: 12px;"&gt;</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>comparisonMode <span class="op">===</span> <span class="st">"Most similar"</span> <span class="op">?</span> <span class="st">"Three Most Similar Flags"</span> <span class="op">:</span> <span class="st">"Three Least Similar Flags"</span><span class="sc">}</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/h3&gt;</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="display: flex; gap: 20px; flex-wrap: wrap;"&gt;</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>comparisonFlags<span class="op">.</span><span class="fu">map</span>(f <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 14px; background: #ffffff; width: 230px; box-shadow: 0 2px 4px rgba(0,0,0,0.06);"&gt;</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;div style="font-weight: 600; font-size: 15px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="</span><span class="sc">${</span>f<span class="op">.</span><span class="at">country</span><span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a><span class="vs">            </span><span class="sc">${</span>f<span class="op">.</span><span class="at">country</span><span class="sc">}</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;/div&gt;</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;img </span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="vs">            src="</span><span class="sc">${</span>f<span class="op">.</span><span class="at">path</span><span class="sc">}</span><span class="vs">" </span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="vs">            alt="Flag of </span><span class="sc">${</span>f<span class="op">.</span><span class="at">country</span><span class="sc">}</span><span class="vs">" </span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="vs">            style="width: 100%; height: 140px; object-fit: cover; border: 1px solid #ddd; border-radius: 4px;" </span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="vs">          /&gt;</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;div style="margin-top: 8px; font-size: 13px; color: #555;"&gt;</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="vs">            Similarity: </span><span class="sc">${</span>(f<span class="op">.</span><span class="at">score</span> <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;/div&gt;</span></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="vs">      `</span>)<span class="sc">}</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">

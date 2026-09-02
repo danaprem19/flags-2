@@ -1,0 +1,122 @@
+---
+title: "Flags of the World: Similarity Explorer"
+format: html
+execute:
+  echo: false
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+library(countrycode)
+
+# Load the precomputed flag similarity matrix
+sim_df <- read_csv("data/similarity.csv", show_col_types = FALSE)
+codes <- sim_df[[1]]
+sim_mat <- as.matrix(sim_df[, -1])
+
+# Handle country names including special territories
+custom_names <- c(
+  "gb-eng" = "England",
+  "gb-nir" = "Northern Ireland",
+  "gb-sct" = "Scotland",
+  "gb-wls" = "Wales",
+  "xk"     = "Kosovo"
+)
+
+countries <- coalesce(
+  countrycode(toupper(codes), origin = "iso2c", destination = "country.name", warn = FALSE),
+  custom_names[codes]
+)
+
+# Build sorted data frame of flags
+flags_df <- tibble(
+  code = codes,
+  country = countries,
+  path = paste0("data/", codes, ".png")
+) |>
+  arrange(country)
+
+# Reorder similarity matrix to align with sorted countries
+ord <- match(flags_df$code, codes)
+sim_mat_ordered <- unname(sim_mat[ord, ord])
+
+# Pass data and similarity matrix to Observable JS
+ojs_define(flagData = flags_df, simMatrix = sim_mat_ordered)
+```
+
+```{ojs}
+// Country selection dropdown
+viewof selectedCountry = Inputs.select(
+  flagData.country,
+  { label: "Choose a Country:", value: "United States" }
+)
+
+// Mode selection: Most similar vs Least similar
+viewof comparisonMode = Inputs.radio(
+  ["Most similar", "Least similar"],
+  { label: "Show flags that look:", value: "Most similar" }
+)
+```
+
+```{ojs}
+// Find the selected flag details
+selectedIndex = flagData.country.indexOf(selectedCountry)
+selectedPath = flagData.path[selectedIndex]
+
+// Compute comparison flags
+comparisonFlags = {
+  const scores = flagData.country.map((country, i) => ({
+    index: i,
+    country: country,
+    code: flagData.code[i],
+    path: flagData.path[i],
+    score: simMatrix[selectedIndex][i]
+  })).filter(d => d.index !== selectedIndex);
+
+  if (comparisonMode === "Most similar") {
+    scores.sort((a, b) => b.score - a.score);
+  } else {
+    scores.sort((a, b) => a.score - b.score);
+  }
+
+  return scores.slice(0, 3);
+}
+
+// Render the selected flag and the top 3 comparisons
+html`
+<div style="font-family: sans-serif; margin-top: 24px;">
+  <div style="margin-bottom: 30px;">
+    <h3 style="margin-bottom: 8px;">Selected Flag: ${selectedCountry}</h3>
+    <img 
+      src="${selectedPath}" 
+      alt="Flag of ${selectedCountry}" 
+      style="max-width: 420px; width: 100%; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" 
+    />
+  </div>
+
+  <div>
+    <h3 style="margin-bottom: 12px;">
+      ${comparisonMode === "Most similar" ? "Three Most Similar Flags" : "Three Least Similar Flags"}
+    </h3>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+      ${comparisonFlags.map(f => html`
+        <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 14px; background: #ffffff; width: 230px; box-shadow: 0 2px 4px rgba(0,0,0,0.06);">
+          <div style="font-weight: 600; font-size: 15px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${f.country}">
+            ${f.country}
+          </div>
+          <img 
+            src="${f.path}" 
+            alt="Flag of ${f.country}" 
+            style="width: 100%; height: 140px; object-fit: cover; border: 1px solid #ddd; border-radius: 4px;" 
+          />
+          <div style="margin-top: 8px; font-size: 13px; color: #555;">
+            Similarity: ${(f.score * 100).toFixed(1)}%
+          </div>
+        </div>
+      `)}
+    </div>
+  </div>
+</div>
+`
+```
